@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import {useAuth} from "../context/AuthContext"
 
 // importing mui components
@@ -37,7 +37,7 @@ export default function SignUp() {
             setEmail("")
             setEmail("")
             setpasswordConfirm("")
-            history("/Dashboard")
+            history("/")
         } catch{
             setError("Fail to login")
         }
@@ -106,7 +106,10 @@ export default function SignUp() {
                     </Grid>
                   </Grid>
                 </form>
-                <Typography sx={{mt: 3, textAlign: "center"}}>Don't have an account? <Link to='/'>Sign Up</Link></Typography>
+                <Typography sx={{mt: 3, textAlign: "center"}}>
+                  Already forgot the password? <Link to="/forgotpassword">Reset Password</Link>
+                </Typography>
+                <Typography sx={{mt: 3, textAlign: "center"}}>Don't have an account? <Link to='/SignUp'>Sign Up</Link></Typography>
               </CardContent>
             </Card>
           </Grid>
