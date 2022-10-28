@@ -1,13 +1,13 @@
 import React from "react";
-import AuthProvider from "../context/AuthContext";
+import AuthProvider from "./context/AuthContext";
 
 //importing components
-import Dashboard from "./Dashboard";
-import SignUp from "./Signup";
-import Login from "./Login";
-import ProtectedRoute from "./PrivateRoute";
-import ForgotPassword from "./ForgotPassword";
-import UpdateInfo from "./UpdateInfo";
+import Dashboard from "./components/Dashboard";
+import SignUp from "./components/Signup";
+import Login from "./components/Login";
+import ProtectedRoute from "./components/PrivateRoute";
+import ForgotPassword from "./components/ForgotPassword";
+import UpdateInfo from "./components/UpdateInfo";
 
 // importing react router
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";

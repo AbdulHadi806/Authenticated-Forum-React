@@ -13,6 +13,7 @@ import {
   TextField,
 } from "@mui/material";
 
+// importing react router components
 import { Link, useNavigate } from "react-router-dom";
 
 export default function UpdateInfo() {
@@ -42,6 +43,7 @@ export default function UpdateInfo() {
         navigate("/")
     }).catch(()=> {
         setError("Failed to update information")
+        navigate("/")
     }).finally(()=> {
         setLoading(false)
     })
@@ -79,7 +81,8 @@ export default function UpdateInfo() {
                         onChange={(e) => {
                           setEmail(e.target.value);
                         }}
-                        placeholder="Enter email"
+                        label= "Enter you Email"
+                        placeholder="Leave empty to not change"
                         variant="outlined"
                         fullWidth
                       />
@@ -88,7 +91,8 @@ export default function UpdateInfo() {
                     <Grid item xs={12}>
                       <TextField
                         multiline
-                        placeholder="Type Password"
+                        placeholder="Leave empty to not change"
+                        label="Enter your new Password"
                         type="password"
                         onChange={(e) => {
                           setpassword(e.target.value);
@@ -100,7 +104,8 @@ export default function UpdateInfo() {
                     <Grid item xs={12}>
                       <TextField
                         multiline
-                        placeholder="Confirm Password"
+                        placeholder="Leave empty to not change"
+                        label="Confirm Password"
                         type="password"
                         onChange={(e) => {
                           setpasswordConfirm(e.target.value);

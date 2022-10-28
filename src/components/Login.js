@@ -18,7 +18,6 @@ import { Link, useNavigate } from "react-router-dom";
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
-  const [passwordConfirm, setpasswordConfirm] = useState("");
   const [error, setError] = useState("");
   const [Loading, setLoading] = useState(false);
   const { Login } = useAuth();
@@ -32,8 +31,6 @@ export default function SignUp() {
       setLoading(true);
       await Login(email, password);
       setEmail("");
-      setEmail("");
-      setpasswordConfirm("");
       navigate("/");
     } catch {
       setError("Fail to login");
@@ -61,7 +58,7 @@ export default function SignUp() {
                 {error && <Alert severity="error">{error}</Alert>}
 
                 <Typography gutterBottom variant="h5">
-                  Login
+                  Sign in
                 </Typography>
                 <Typography
                   variant="body2"
@@ -69,7 +66,7 @@ export default function SignUp() {
                   component="p"
                   gutterBottom
                 >
-                  Please Login to continue
+                  Please Sign in to Verify Your Self
                 </Typography>
                 <form onSubmit={handleSubmit}>
                   <Grid container spacing={1}>
@@ -111,7 +108,7 @@ export default function SignUp() {
                         color="primary"
                         fullWidth
                       >
-                        Sign Up
+                        Sign in
                       </Button>
                     </Grid>
                   </Grid>

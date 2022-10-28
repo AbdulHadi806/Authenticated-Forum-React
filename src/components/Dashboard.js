@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions, Container } from "@mui/material";
+import { Button, CardActionArea, CardActions, Container,Alert } from "@mui/material";
 
 // importing context
 import { useAuth } from "../context/AuthContext";
@@ -41,6 +41,7 @@ export default function Dashboard() {
       <Card sx={{ width: "300px", textAlign: "center" }}>
         <CardActionArea>
           <CardContent>
+            {error && <Alert variant="danger">{error}</Alert>}
             <Typography gutterBottom variant="h5" component="div">
               Current User
             </Typography>

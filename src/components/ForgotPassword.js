@@ -13,6 +13,7 @@ import {
   TextField,
 } from "@mui/material";
 
+// importing react router components
 import { Link } from "react-router-dom";
 
 export default function ChangePassword() {
@@ -31,7 +32,7 @@ export default function ChangePassword() {
       await resetPassword(email);
       setMessage("Check you inbox for the verification key")
     } catch {
-      setError("Fail to resey Password");
+      setError("Fail to reset Password");
     }
     setLoading(false);
   }
@@ -97,7 +98,7 @@ export default function ChangePassword() {
                   </Grid>
                 </form>
                 <Typography sx={{ mt: 3, textAlign: "center" }}>
-                  Move<Link to="/Login"> to Login page</Link>
+                  Move to <Link to="/Login">Login page</Link>
                 </Typography>
               </CardContent>
             </Card>
