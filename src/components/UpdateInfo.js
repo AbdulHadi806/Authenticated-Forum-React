@@ -15,35 +15,37 @@ import {
 
 import { Link, useNavigate } from "react-router-dom";
 
-export default function SignUp() {
+export default function UpdateInfo() {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
   const [passwordConfirm, setpasswordConfirm] = useState("");
   const [error, setError] = useState("");
   const [Loading, setLoading] = useState(false);
-  const { signup } = useAuth();
+  const { updateEmail,updatePassword,currentUser } = useAuth();
   const navigate = useNavigate();
 
-  async function handleSubmit(e) {
+   const handleSubmit = (e) => {
     e.preventDefault();
-    if (passwordConfirm.length < 6) {
-      return setError("Password must be 6 characters longer");
-    }
     if (password !== passwordConfirm) {
       return setError("Passwords not matched");
     }
-    try {
-      setError("");
-      setLoading(true);
-      await signup(email, password);
-      setEmail("");
-      setEmail("");
-      setpasswordConfirm("");
-      navigate("/Login");
-    } catch {
-      setError("Fail to sign up");
+    setLoading(true)
+
+    const promises = []
+    if (email !== currentUser.email) {
+        promises.push(updateEmail(email))
     }
-    setLoading(false);
+    if (password !== currentUser.password) {
+        promises.push(updatePassword(password))
+    }
+    Promise.all(promises).then(()=> {
+        navigate("/")
+    }).catch(()=> {
+        setError("Failed to update information")
+    }).finally(()=> {
+        setLoading(false)
+    })
+
   }
 
   return (
@@ -66,16 +68,7 @@ export default function SignUp() {
                 {error && <Alert severity="error">{error}</Alert>}
 
                 <Typography gutterBottom variant="h5">
-                  Sign Up
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="textSecondary"
-                  component="p"
-                  gutterBottom
-                >
-                  Fill up the form and our team will get back to you within 24
-                  hours.
+                  Update information
                 </Typography>
                 <form onSubmit={handleSubmit}>
                   <Grid container spacing={1}>
@@ -89,7 +82,6 @@ export default function SignUp() {
                         placeholder="Enter email"
                         variant="outlined"
                         fullWidth
-                        required
                       />
                     </Grid>
 
@@ -103,7 +95,6 @@ export default function SignUp() {
                         }}
                         variant="outlined"
                         fullWidth
-                        required
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -116,7 +107,6 @@ export default function SignUp() {
                         }}
                         variant="outlined"
                         fullWidth
-                        required
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -130,13 +120,13 @@ export default function SignUp() {
                         color="primary"
                         fullWidth
                       >
-                        Sign Up
+                        Update
                       </Button>
                     </Grid>
                   </Grid>
                 </form>
                 <Typography sx={{ mt: 3, textAlign: "center" }}>
-                  Already have an account? <Link to="/Login">Sign in</Link>
+                  <Link to="/">Cancel</Link>
                 </Typography>
               </CardContent>
             </Card>
